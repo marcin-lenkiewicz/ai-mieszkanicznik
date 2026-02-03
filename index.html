@@ -121,17 +121,18 @@
 
         /* Event Details Bar */
         .event-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            padding: 1.5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 1.5rem;
+            padding: 2rem;
             background: white;
             border-radius: 16px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto 4rem;
             animation: fadeInUp 0.6s ease-out 0.3s backwards;
+            align-items: center;
+            overflow: hidden;
         }
 
         .event-detail {
@@ -151,6 +152,118 @@
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-dark);
+        }
+
+        .event-detail-value a.map-toggle {
+            color: var(--color-dark);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--color-accent);
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .event-detail-value a.map-toggle:hover {
+            color: var(--color-accent);
+        }
+
+        .event-detail-value small {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-top: 0.3rem;
+        }
+
+        .map-hint {
+            font-size: 0.7rem;
+            color: var(--color-accent);
+            margin-top: 0.4rem;
+            opacity: 0.8;
+        }
+
+        .map-container {
+            grid-column: 1 / -1;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, padding 0.5s ease, margin 0.5s ease;
+            border-radius: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .map-container.expanded {
+            max-height: 350px;
+            margin-top: 1.5rem;
+            padding-top: 0;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .map-close {
+            display: none;
+            text-align: center;
+            margin-top: 0.8rem;
+            grid-column: 1 / -1;
+        }
+
+        .map-close.visible {
+            display: block;
+        }
+
+        .map-close button {
+            background: none;
+            border: 1px solid var(--color-text-muted);
+            color: var(--color-text-muted);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .map-close button:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-small {
+            display: inline-block;
+            background: var(--color-accent);
+            color: white;
+            padding: 0.6rem 1.6rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-small:hover {
+            background: #D64E00;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 700px) {
+            .event-bar {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .map-container.expanded {
+                max-height: 300px;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
         }
 
         /* Content Sections */
@@ -427,7 +540,7 @@
 <body>
     <header class="header">
         <a href="#" class="header-logo">Mieszkanicznik Białystok</a>
-        <a href="#zapisz-sie" class="header-cta">Wypełnij formularz</a>
+        <a href="#zapisz-sie" class="header-cta">Zapisz się</a>
     </header>
 
     <section class="hero">
@@ -438,22 +551,41 @@
 
     <div class="event-bar">
         <div class="event-detail">
-            <div class="event-detail-label">Data</div>
-            <div class="event-detail-value">Do ustalenia</div>
-        </div>
-        <div class="event-detail">
-            <div class="event-detail-label">Godzina</div>
-            <div class="event-detail-value">18:00</div>
+            <div class="event-detail-label">Data i godzina</div>
+            <div class="event-detail-value">26.02.2026 · 18:00</div>
         </div>
         <div class="event-detail">
             <div class="event-detail-label">Miejsce</div>
-            <div class="event-detail-value">Białystok</div>
+            <div class="event-detail-value"><a href="javascript:void(0)" class="map-toggle" onclick="toggleMap()">Centrum Szkoleniowe ul. Warszawska 14, Białystok</a><small>(wejście od lewej strony budynku – wjazd na parking)</small><div class="map-hint">📍 kliknij, aby zobaczyć mapę</div></div>
         </div>
         <div class="event-detail">
             <div class="event-detail-label">Wstęp</div>
-            <div class="event-detail-value">Patrz info od organizatorów</div>
+            <div class="event-detail-value"><a href="#zapisz-sie" class="btn-small">Zapisz się</a></div>
+        </div>
+        <div class="map-container" id="mapContainer">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2397.8!2d23.1544!3d53.1325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ffc7b0f4b0001%3A0x1!2sWarszawska%2014%2C%20Bia%C5%82ystok!5e0!3m2!1spl!2spl!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="map-close" id="mapClose">
+            <button onclick="toggleMap()">Zwiń mapę ↑</button>
         </div>
     </div>
+
+    <script>
+        function toggleMap() {
+            const mapContainer = document.getElementById('mapContainer');
+            const mapClose = document.getElementById('mapClose');
+            const mapHint = document.querySelector('.map-hint');
+            
+            mapContainer.classList.toggle('expanded');
+            mapClose.classList.toggle('visible');
+            
+            if (mapContainer.classList.contains('expanded')) {
+                mapHint.textContent = '📍 mapa poniżej';
+            } else {
+                mapHint.textContent = '📍 kliknij, aby zobaczyć mapę';
+            }
+        }
+    </script>
 
     <section class="section">
         <h2 class="section-title">Czego się dowiesz?</h2>
