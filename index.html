@@ -218,8 +218,31 @@
         }
 
         .speaker-inner {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .speaker-content {
+            order: 1;
+        }
+
+        .speaker-photo {
+            order: 2;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .speaker-photo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
         }
 
         .speaker-title {
@@ -334,6 +357,30 @@
         }
 
         /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .speaker-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .speaker-content {
+                order: 2;
+            }
+
+            .speaker-photo {
+                order: 1;
+            }
+
+            .speaker-photo img {
+                max-height: 300px;
+            }
+
+            .speaker-stats {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 600px) {
             .header {
                 padding: 1rem;
@@ -427,21 +474,26 @@
 
     <section class="speaker" id="prelegent">
         <div class="speaker-inner">
-            <h2 class="speaker-title">Prelegent</h2>
-            <div class="speaker-name">Marcin Lenkiewicz</div>
-            <div class="speaker-role">Trener AI i konsultant biznesowy</div>
-            <p>Specjalizuję się w pokazywaniu, jak AI działa w praktyce – bez żargonu, bez magii, z konkretnymi narzędziami do wdrożenia od zaraz.</p>
-            <p>Działam solo, więc wiem, jak wygląda rzeczywistość, gdy nie masz działu IT ani budżetu na drogie systemy. Pokazuję rozwiązania, które działają tu i teraz, dla zwykłego człowieka z laptopem.</p>
-            
-            <div class="speaker-stats">
-                <div class="stat">
-                    <div class="stat-number">700+</div>
-                    <div class="stat-label">godzin szkoleń w 2025</div>
+            <div class="speaker-content">
+                <h2 class="speaker-title">Prelegent</h2>
+                <div class="speaker-name">Marcin Lenkiewicz</div>
+                <div class="speaker-role">Trener AI i konsultant biznesowy</div>
+                <p>Specjalizuję się w pokazywaniu, jak AI działa w praktyce – bez żargonu, bez magii, z konkretnymi narzędziami do wdrożenia od zaraz.</p>
+                <p>Działam solo, więc wiem, jak wygląda rzeczywistość, gdy nie masz działu IT ani budżetu na drogie systemy. Pokazuję rozwiązania, które działają tu i teraz, dla zwykłego człowieka z laptopem.</p>
+                
+                <div class="speaker-stats">
+                    <div class="stat">
+                        <div class="stat-number">700+</div>
+                        <div class="stat-label">godzin szkoleń w 2025</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">firm wdrożyło AI</div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">25+</div>
-                    <div class="stat-label">firm wdrożyło AI</div>
-                </div>
+            </div>
+            <div class="speaker-photo">
+                <img src="marcin-lenkiewicz.png" alt="Marcin Lenkiewicz - Trener AI">
             </div>
         </div>
     </section>
