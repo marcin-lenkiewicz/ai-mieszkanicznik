@@ -324,7 +324,7 @@
 
         /* Speaker Section */
         .speaker {
-            background: linear-gradient(90deg, var(--color-dark) 0%, var(--color-dark) 40%, #000000 60%, #000000 100%);
+            background: var(--color-dark);
             color: white;
             padding: 4rem 2rem;
             margin: 4rem 0;
@@ -345,18 +345,18 @@
             order: 1;
         }
 
-        .speaker-photo {
+        .speaker-video {
             order: 2;
             position: relative;
             margin-right: -2rem;
         }
 
-        .speaker-photo img {
+        .speaker-video iframe {
             max-width: 100%;
             height: auto;
-            max-height: 480px;
-            object-fit: contain;
-            object-position: top;
+            aspect-ratio: 560 / 315;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
         }
 
         .speaker-title {
@@ -473,7 +473,7 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .speaker {
-                background: linear-gradient(180deg, #000000 0%, #000000 60%, var(--color-dark) 100%);
+                background: var(--color-dark);
             }
 
             .speaker-inner {
@@ -486,13 +486,14 @@
                 order: 2;
             }
 
-            .speaker-photo {
+            .speaker-video {
                 order: 1;
                 margin-right: 0;
             }
 
-            .speaker-photo img {
-                max-height: 350px;
+            .speaker-video iframe {
+                width: 100%;
+                max-width: 400px;
             }
 
             .speaker-stats {
@@ -540,7 +541,7 @@
 <body>
     <header class="header">
         <a href="#" class="header-logo">Mieszkanicznik Białystok</a>
-        <a href="#zapisz-sie" class="header-cta">Zapisz się</a>
+        <a href="https://bit.ly/Bi0226" target="_blank" rel="noopener" class="header-cta">Zapisz się</a>
     </header>
 
     <section class="hero">
@@ -560,7 +561,7 @@
         </div>
         <div class="event-detail">
             <div class="event-detail-label">Wstęp</div>
-            <div class="event-detail-value"><a href="#zapisz-sie" class="btn-small">Zapisz się</a></div>
+            <div class="event-detail-value"><a href="https://bit.ly/Bi0226" target="_blank" rel="noopener" class="btn-small">Zapisz się</a></div>
         </div>
         <div class="map-container" id="mapContainer">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2397.8!2d23.1544!3d53.1325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ffc7b0f4b0001%3A0x1!2sWarszawska%2014%2C%20Bia%C5%82ystok!5e0!3m2!1spl!2spl!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -630,8 +631,8 @@
                     </div>
                 </div>
             </div>
-            <div class="speaker-photo">
-                <img src="marcin-lenkiewicz.png" alt="Marcin Lenkiewicz - Trener AI">
+            <div class="speaker-video">
+                <iframe width="560" height="315" src="https://app.heygen.com/embedded-player/c8732075ad494aa1994c946bbceac7aa" title="HeyGen video player" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
             </div>
         </div>
     </section>
