@@ -324,7 +324,7 @@
 
         /* Speaker Section */
         .speaker {
-            background: var(--color-dark);
+            background: linear-gradient(90deg, var(--color-dark) 0%, var(--color-dark) 40%, #000000 60%, #000000 100%);
             color: white;
             padding: 4rem 2rem;
             margin: 4rem 0;
@@ -338,26 +338,25 @@
             display: grid;
             grid-template-columns: 1fr 320px;
             gap: 2rem;
-            align-items: stretch;
+            align-items: center;
         }
 
         .speaker-content {
             order: 1;
         }
 
-        .speaker-video {
+        .speaker-photo {
             order: 2;
             position: relative;
-            display: flex;
-            align-items: stretch;
+            margin-right: -2rem;
         }
 
-        .speaker-video iframe {
-            width: 320px;
-            height: 100%;
-            min-height: 450px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        .speaker-photo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: contain;
+            object-position: top;
         }
 
         .speaker-title {
@@ -474,7 +473,7 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .speaker {
-                background: var(--color-dark);
+                background: linear-gradient(180deg, #000000 0%, #000000 60%, var(--color-dark) 100%);
             }
 
             .speaker-inner {
@@ -487,14 +486,13 @@
                 order: 2;
             }
 
-            .speaker-video {
+            .speaker-photo {
                 order: 1;
                 margin-right: 0;
             }
 
-            .speaker-video iframe {
-                width: 260px;
-                height: 460px;
+            .speaker-photo img {
+                max-height: 350px;
             }
 
             .speaker-stats {
@@ -632,8 +630,8 @@
                     </div>
                 </div>
             </div>
-            <div class="speaker-video">
-                <iframe width="315" height="560" src="https://app.heygen.com/embedded-player/c8732075ad494aa1994c946bbceac7aa" title="HeyGen video player" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
+            <div class="speaker-photo">
+                <img src="marcin-lenkiewicz.png" alt="Marcin Lenkiewicz - Trener AI">
             </div>
         </div>
     </section>
